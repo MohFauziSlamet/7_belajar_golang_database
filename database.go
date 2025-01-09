@@ -2,6 +2,7 @@ package belajargolangdatabase
 
 import (
 	"database/sql"
+	"fmt"
 	"time"
 )
 
@@ -21,7 +22,16 @@ ditangani oleh database yang kita gunakan.
 */
 
 func GetConnection() *sql.DB {
-	db, err := sql.Open("mysql", "root:@tcp(localhost)/belajar_golang_database")
+	// db, err := sql.Open("mysql", "root:@tcp(localhost)/belajar_golang_database")
+	//  ostname, username, password, dan nama database.
+	hostname := "sql207.infinityfree.com"
+	username := "if0_37928602"
+	password := "Fauzi222606"
+	dbname := "if0_37928602_belajar_golang_database"
+
+	// Format DSN (Data Source Name)
+	dsn := fmt.Sprintf("%s:%s@tcp(%s)/%s", username, password, hostname, dbname)
+	db, err := sql.Open("mysql", dsn)
 
 	if err != nil {
 		panic(err)
